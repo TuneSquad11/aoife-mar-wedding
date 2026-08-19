@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aoife &amp; Mar — 19th June 2027</title>
+  <title>Aoife &amp; Mar — 9th October 2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Beau+Rivage&display=swap" rel="stylesheet">
   <style>
     :root {
       --olive: #5d6748;
@@ -17,6 +20,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       background: var(--cream);
@@ -25,45 +32,136 @@
       line-height: 1.6;
     }
 
-    .hero {
-      background: linear-gradient(160deg, var(--olive) 0%, var(--olive-dark) 100%);
-      color: var(--cream);
-      text-align: center;
-      padding: 6rem 1.5rem 5rem;
-      border-bottom: 4px solid var(--gold);
+    section[id] {
+      scroll-margin-top: 4.25rem;
     }
 
-    .hero .ampersand {
-      display: block;
-      font-size: 1.5rem;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.3em;
+    /* Nav */
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--cream);
+      border-bottom: 1px solid rgba(93, 103, 72, 0.15);
+    }
+
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 1.75rem;
+      padding: 0.9rem 1rem;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .nav-inner a {
+      color: var(--olive-dark);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      padding-bottom: 0.3rem;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-inner a:hover,
+    .nav-inner a:focus-visible {
+      color: var(--olive);
+      border-color: var(--gold);
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      background-color: var(--olive-dark);
+      background-image:
+        linear-gradient(180deg, rgba(35, 39, 26, 0.5) 0%, rgba(35, 39, 26, 0.7) 100%),
+        url('assets/can-mora-de-dalt.jpg');
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      padding: 5rem 1.5rem;
+      border-bottom: 4px solid var(--gold);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 55vh;
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-photo-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: rgba(35, 39, 26, 0.35);
+    }
+
+    .hero-photo {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      display: block;
     }
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 400;
-      letter-spacing: 0.02em;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2.75rem, 7vw, 5.5rem);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: none;
+      color: var(--cream);
+    }
+
+    .hero h1 .name {
+      font-weight: 500;
+    }
+
+    .hero h1 .and {
+      font-family: "Beau Rivage", cursive;
+      font-style: normal;
+      font-size: 0.65em;
+      color: var(--gold);
+      margin: 0 0.15em;
+      letter-spacing: 0;
+      vertical-align: -0.05em;
     }
 
     .hero p {
-      margin-top: 1rem;
-      font-size: 1.15rem;
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
       color: var(--cream);
-      opacity: 0.9;
+      opacity: 0.85;
     }
 
     main {
-      max-width: 640px;
+      max-width: 680px;
       margin: 0 auto;
-      padding: 3rem 1.5rem 5rem;
+      padding: 3.5rem 1.5rem 5rem;
     }
 
     section {
-      margin-bottom: 3.5rem;
+      margin-bottom: 4.5rem;
+    }
+
+    section:last-child {
+      margin-bottom: 2rem;
     }
 
     h2 {
@@ -84,13 +182,31 @@
       margin: 0.6rem auto 0;
     }
 
-    .details {
+    .section-intro {
+      text-align: center;
+      max-width: 34rem;
+      margin: 0 auto 2rem;
+      color: var(--olive-dark);
+      opacity: 0.9;
+    }
+
+    .tbc {
+      color: #8a7245;
+      font-style: italic;
+    }
+
+    .card {
       background: #fff;
       border: 1px solid rgba(93, 103, 72, 0.15);
       border-radius: 10px;
       padding: 2rem;
-      text-align: center;
       box-shadow: 0 4px 16px rgba(93, 103, 72, 0.08);
+    }
+
+    /* Home quick facts */
+
+    .details {
+      text-align: center;
     }
 
     .details dl {
@@ -117,10 +233,98 @@
       font-size: 1.05rem;
     }
 
-    .placeholder {
-      color: #a08a5a;
-      font-style: italic;
+    /* Schedule timeline */
+
+    .timeline {
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
+
+    .timeline li {
+      display: grid;
+      grid-template-columns: 6.5rem 1fr;
+      gap: 0.25rem 1.25rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(93, 103, 72, 0.15);
+    }
+
+    .timeline li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .timeline .time {
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 0.95rem;
+      align-self: start;
+    }
+
+    .timeline .event {
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+
+    .timeline .note {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--olive-dark);
+      opacity: 0.85;
+      margin-top: 0.15rem;
+    }
+
+    /* Travel */
+
+    .info-block {
+      margin-bottom: 1.75rem;
+    }
+
+    .info-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-block h3 {
+      margin: 0 0 0.4rem;
+      color: var(--olive-dark);
+      font-size: 1.05rem;
+      letter-spacing: 0.03em;
+    }
+
+    .info-block p {
+      margin: 0;
+    }
+
+    .transport-prompt {
+      margin-top: 2rem;
+      text-align: center;
+      background: rgba(179, 153, 105, 0.12);
+      border: 1px solid rgba(179, 153, 105, 0.4);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    .transport-prompt p {
+      margin: 0 0 0.9rem;
+    }
+
+    .link-btn {
+      display: inline-block;
+      background: var(--olive);
+      color: var(--cream);
+      text-decoration: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      transition: background 0.2s ease;
+    }
+
+    .link-btn:hover {
+      background: var(--olive-dark);
+    }
+
+    /* RSVP form */
 
     form {
       background: #fff;
@@ -236,6 +440,58 @@
       color: #7a6535;
     }
 
+    /* FAQ accordion */
+
+    .faq-item {
+      border-bottom: 1px solid rgba(93, 103, 72, 0.15);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      padding: 1.1rem 0.25rem;
+      font-weight: bold;
+      color: var(--olive-dark);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      color: var(--gold);
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-item p {
+      margin: 0 0.25rem 1.1rem;
+    }
+
+    /* Our Story */
+
+    .story-photo {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 16px rgba(93, 103, 72, 0.15);
+    }
+
     footer {
       text-align: center;
       padding: 2rem 1.5rem;
@@ -247,29 +503,40 @@
 </head>
 <body>
 
-  <div class="hero">
-    <span class="ampersand">You're invited</span>
-    <h1>Aoife &amp; Mar</h1>
-    <p>are getting married at Can Mora de Dalt, near Barcelona</p>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="#home">Home</a>
+      <a href="#rsvp">RSVP</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#travel">Travel</a>
+      <a href="#faq">FAQs</a>
+      <a href="#story">Our Story</a>
+    </div>
+  </nav>
+
+  <div class="hero" id="home">
+    <div>
+      <div class="hero-photo-wrap">
+        <img class="hero-photo" src="assets/Us_1.jpg" alt="Aoife and Mar" />
+      </div>
+      <h1><span class="name">Aoife</span> <span class="and">&amp;</span> <span class="name">Mar</span></h1>
+      <p>are getting married</p>
+    </div>
   </div>
 
   <main>
 
-    <section id="details">
-      <h2>The Details</h2>
+    <section id="home-details">
       <div class="details">
         <dl>
           <dt>Date</dt>
-          <dd><span class="placeholder">[WEDDING DATE]</span></dd>
+          <dd>9th October 2027</dd>
 
           <dt>Time</dt>
-          <dd><span class="placeholder">[TIME]</span></dd>
+          <dd>4:00 PM</dd>
 
           <dt>Venue</dt>
           <dd>Can Mora de Dalt</dd>
-
-          <dt>Address</dt>
-          <dd><span class="placeholder">[FULL ADDRESS]</span></dd>
         </dl>
       </div>
     </section>
@@ -329,6 +596,97 @@
         </div>
 
       </form>
+    </section>
+
+    <section id="schedule">
+      <h2>Schedule of the Day</h2>
+      <div class="card">
+        <ul class="timeline">
+          <li>
+            <span class="time">4:00 PM</span>
+            <span class="event">Ceremony
+              <span class="note">Can Mora de Dalt</span>
+            </span>
+          </li>
+          <li>
+            <span class="time tbc">TBC</span>
+            <span class="event">Cocktail Hour
+              <span class="note tbc">Timing to be confirmed</span>
+            </span>
+          </li>
+          <li>
+            <span class="time tbc">TBC</span>
+            <span class="event">Reception &amp; Dinner
+              <span class="note tbc">Timing to be confirmed</span>
+            </span>
+          </li>
+          <li>
+            <span class="time tbc">TBC</span>
+            <span class="event">After-Party
+              <span class="note tbc">Timing to be confirmed</span>
+            </span>
+          </li>
+          <li>
+            <span class="time tbc">TBC</span>
+            <span class="event">Next-Day Brunch
+              <span class="note tbc">Details to follow, if you're staying on</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="travel">
+      <h2>Travel &amp; Accommodations</h2>
+      <div class="card">
+        <div class="info-block">
+          <h3>Venue Address</h3>
+          <p>Can Mora de Dalt<br>Raval de Font Mitjana, 3, 08394 Sant Vicenç de Montalt, Barcelona, Spain</p>
+        </div>
+        <div class="info-block">
+          <h3>Parking</h3>
+          <p class="tbc">Parking details to be confirmed — we'll update this closer to the day.</p>
+        </div>
+        <div class="info-block">
+          <h3>Nearest Airport</h3>
+          <p>Barcelona–El Prat Airport (BCN) is the main international airport serving the area.
+            <span class="tbc">Exact travel time from the venue to be confirmed.</span></p>
+        </div>
+        <div class="info-block">
+          <h3>Accommodation</h3>
+          <p class="tbc">We're arranging a hotel block nearby — booking link and details coming soon.</p>
+        </div>
+      </div>
+
+      <div class="transport-prompt">
+        <p>Will you be making your own way, or would you like a seat on the shuttle bus?</p>
+        <a href="#rsvp" class="link-btn">Let us know in your RSVP</a>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>FAQs</h2>
+      <div class="card">
+        <details class="faq-item">
+          <summary>What's the dress code?</summary>
+          <p class="tbc">Dress code details coming soon.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Are children welcome?</summary>
+          <p class="tbc">Our children's policy will be confirmed here shortly.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Will there be a shuttle?</summary>
+          <p>Yes — let us know if you'd like a seat when you RSVP. Shuttle pickup times will be added to the
+            <a href="#schedule">Schedule</a> once confirmed.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="story">
+      <h2>Our Story</h2>
+      <img class="story-photo" src="assets/Us_2.JPG" alt="Aoife and Mar" />
+      <p>It started with swiping right...</p>
     </section>
 
   </main>
