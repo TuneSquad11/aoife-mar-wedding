@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aoife &amp; Mar — 19th June 2027</title>
+  <style>
+    :root {
+      --olive: #5d6748;
+      --cream: #f4efe2;
+      --gold: #b39969;
+      --olive-dark: #454d34;
+      --ink: #3a3a32;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    .hero {
+      background: linear-gradient(160deg, var(--olive) 0%, var(--olive-dark) 100%);
+      color: var(--cream);
+      text-align: center;
+      padding: 6rem 1.5rem 5rem;
+      border-bottom: 4px solid var(--gold);
+    }
+
+    .hero .ampersand {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .hero p {
+      margin-top: 1rem;
+      font-size: 1.15rem;
+      color: var(--cream);
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    section {
+      margin-bottom: 3.5rem;
+    }
+
+    h2 {
+      color: var(--olive);
+      font-weight: 400;
+      font-size: 1.6rem;
+      text-align: center;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0.6rem auto 0;
+    }
+
+    .details {
+      background: #fff;
+      border: 1px solid rgba(93, 103, 72, 0.15);
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(93, 103, 72, 0.08);
+    }
+
+    .details dl {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 0.5rem 1.5rem;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .details dt {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      text-align: right;
+      align-self: center;
+    }
+
+    .details dd {
+      margin: 0;
+      text-align: left;
+      align-self: center;
+      font-size: 1.05rem;
+    }
+
+    .placeholder {
+      color: #a08a5a;
+      font-style: italic;
+    }
+
+    form {
+      background: #fff;
+      border: 1px solid rgba(93, 103, 72, 0.15);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 4px 16px rgba(93, 103, 72, 0.08);
+    }
+
+    .field {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--olive-dark);
+      margin-bottom: 0.4rem;
+      font-weight: bold;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: normal;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.7rem 0.8rem;
+      border: 1px solid rgba(93, 103, 72, 0.3);
+      border-radius: 6px;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    input[type="radio"] {
+      accent-color: var(--olive);
+    }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--olive);
+      color: var(--cream);
+      border: none;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 1.05rem;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background: var(--olive-dark);
+    }
+
+    .submit-btn:disabled {
+      background: #9aa08a;
+      cursor: not-allowed;
+    }
+
+    .form-message {
+      display: none;
+      margin-top: 1.25rem;
+      padding: 1rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.98rem;
+      text-align: center;
+    }
+
+    .form-message.visible {
+      display: block;
+    }
+
+    .form-message.success {
+      background: rgba(93, 103, 72, 0.12);
+      border: 1px solid var(--olive);
+      color: var(--olive-dark);
+    }
+
+    .form-message.error {
+      background: rgba(179, 153, 105, 0.15);
+      border: 1px solid var(--gold);
+      color: #7a6535;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      color: var(--olive);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <span class="ampersand">You're invited</span>
+    <h1>Aoife &amp; Mar</h1>
+    <p>are getting married at Can Mora de Dalt, near Barcelona</p>
+  </div>
+
+  <main>
+
+    <section id="details">
+      <h2>The Details</h2>
+      <div class="details">
+        <dl>
+          <dt>Date</dt>
+          <dd><span class="placeholder">[WEDDING DATE]</span></dd>
+
+          <dt>Time</dt>
+          <dd><span class="placeholder">[TIME]</span></dd>
+
+          <dt>Venue</dt>
+          <dd>Can Mora de Dalt</dd>
+
+          <dt>Address</dt>
+          <dd><span class="placeholder">[FULL ADDRESS]</span></dd>
+        </dl>
+      </div>
+    </section>
+
+    <section id="rsvp">
+      <h2>RSVP</h2>
+      <form id="rsvp-form" action="[YOUR_FORM_ENDPOINT]" method="POST">
+
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="field">
+          <label>Will you be attending?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="attending" value="yes" required /> Yes</label>
+            <label><input type="radio" name="attending" value="no" required /> No</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="guests">Number of guests</label>
+          <select id="guests" name="guests">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Transport</label>
+          <div class="radio-group">
+            <label><input type="radio" name="transport" value="own" /> Own transport</label>
+            <label><input type="radio" name="transport" value="bus" /> Shuttle bus</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="diet">Dietary requirements</label>
+          <textarea id="diet" name="diet" placeholder="Let us know about any allergies or preferences"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">Send RSVP</button>
+
+        <div class="form-message success" id="success-message">
+          Thank you! Your RSVP has been received — we can't wait to celebrate with you.
+        </div>
+        <div class="form-message error" id="error-message">
+          Something went wrong sending your RSVP. Please try again, or email us directly.
+        </div>
+
+      </form>
+    </section>
+
+  </main>
+
+  <footer>
+    Aoife &amp; Mar · Can Mora de Dalt
+  </footer>
+
+  <script>
+    // Paste your Apps Script Web App deployment URL here (see setup instructions).
+    const APPS_SCRIPT_URL = "[YOUR_APPS_SCRIPT_WEB_APP_URL]";
+
+    const form = document.getElementById("rsvp-form");
+    const submitBtn = document.getElementById("submit-btn");
+    const successMessage = document.getElementById("success-message");
+    const errorMessage = document.getElementById("error-message");
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      successMessage.classList.remove("visible");
+      errorMessage.classList.remove("visible");
+
+      const formData = new FormData(form);
+      const payload = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        attending: formData.get("attending"),
+        guests: formData.get("guests"),
+        transport: formData.get("transport"),
+        diet: formData.get("diet"),
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending…";
+
+      try {
+        const response = await fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          // Sending as text/plain (rather than application/json) avoids a CORS
+          // preflight request, which Apps Script web apps don't handle. The
+          // Apps Script side still parses this as JSON — see Code.gs.
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (result && result.result === "success") {
+          form.reset();
+          successMessage.classList.add("visible");
+        } else {
+          errorMessage.classList.add("visible");
+        }
+      } catch (err) {
+        errorMessage.classList.add("visible");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send RSVP";
+      }
+    });
+  </script>
+
+</body>
+</html>
