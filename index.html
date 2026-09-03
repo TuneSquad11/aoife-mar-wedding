@@ -6,14 +6,18 @@
   <title>Aoife &amp; Mar — 9th October 2027</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Beau+Rivage&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Caveat:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --olive: #5d6748;
-      --cream: #f4efe2;
-      --gold: #b39969;
-      --olive-dark: #454d34;
-      --ink: #3a3a32;
+      --terracotta: #141414;
+      --terracotta-dark: #000000;
+      --green: #141414;
+      --green-dark: #000000;
+      --cream: #ffffff;
+      --ink: #141414;
+      --muted: #767676;
+      --line: #141414;
+      --border: rgba(0, 0, 0, 0.16);
     }
 
     * {
@@ -26,14 +30,36 @@
 
     body {
       margin: 0;
-      background: var(--cream);
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(circle at 14% 6%, rgba(0, 0, 0, 0.08), transparent 40%),
+        radial-gradient(circle at 88% 22%, rgba(0, 0, 0, 0.06), transparent 42%),
+        radial-gradient(circle at 10% 55%, rgba(0, 0, 0, 0.06), transparent 38%),
+        radial-gradient(circle at 90% 78%, rgba(0, 0, 0, 0.07), transparent 40%),
+        radial-gradient(circle at 18% 96%, rgba(0, 0, 0, 0.06), transparent 38%),
+        radial-gradient(rgba(0, 0, 0, 0.14) 1px, transparent 1px);
+      background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+      background-size: auto, auto, auto, auto, auto, 24px 24px;
       color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.6;
+      font-family: "DM Sans", -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.65;
     }
 
     section[id] {
       scroll-margin-top: 4.25rem;
+    }
+
+    h1, h2, .script {
+      font-family: "Gloria Hallelujah", cursive;
+      color: var(--terracotta);
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .motif {
+      display: block;
+      color: var(--line);
+      opacity: 0.85;
     }
 
     /* Nav */
@@ -43,7 +69,7 @@
       top: 0;
       z-index: 50;
       background: var(--cream);
-      border-bottom: 1px solid rgba(93, 103, 72, 0.15);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-bar {
@@ -53,8 +79,36 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      min-height: 3.25rem;
+      min-height: 3.5rem;
       padding: 0 1rem;
+    }
+
+    .lang-toggle {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .lang-toggle button {
+      background: none;
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      padding: 0.2rem 0.65rem;
+      font-family: "DM Sans", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .lang-toggle button.active {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: var(--cream);
     }
 
     .nav-toggle {
@@ -73,7 +127,7 @@
       display: block;
       width: 22px;
       height: 2px;
-      background: var(--olive-dark);
+      background: var(--ink);
       margin: 4px 0;
       transition: transform 0.2s ease, opacity 0.2s ease;
     }
@@ -94,17 +148,16 @@
       display: flex;
       justify-content: center;
       gap: 1.75rem;
-      padding: 0.9rem 1rem;
+      padding: 0.9rem 1rem 0.9rem 5.5rem;
       overflow-x: auto;
       white-space: nowrap;
     }
 
     .nav-inner a {
-      color: var(--olive-dark);
+      color: var(--ink);
       text-decoration: none;
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-size: 0.92rem;
+      font-weight: 500;
       padding-bottom: 0.3rem;
       border-bottom: 2px solid transparent;
       transition: border-color 0.2s ease, color 0.2s ease;
@@ -112,13 +165,17 @@
 
     .nav-inner a:hover,
     .nav-inner a:focus-visible {
-      color: var(--olive);
-      border-color: var(--gold);
+      color: var(--terracotta);
+      border-color: var(--terracotta);
     }
 
     @media (max-width: 640px) {
       .nav-toggle {
         display: block;
+      }
+
+      .nav-bar {
+        justify-content: flex-start;
       }
 
       .nav-inner {
@@ -130,9 +187,9 @@
         flex-direction: column;
         align-items: center;
         gap: 0;
+        padding: 0;
         background: var(--cream);
-        border-bottom: 1px solid rgba(93, 103, 72, 0.15);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+        border-bottom: 1px solid var(--border);
       }
 
       .nav-inner.open {
@@ -143,94 +200,61 @@
         width: 100%;
         text-align: center;
         padding: 0.85rem 1rem;
-        border-bottom: 1px solid rgba(93, 103, 72, 0.1);
+        border-bottom: 1px solid var(--border);
       }
     }
 
     /* Hero */
 
     .hero {
-      position: relative;
-      background-color: var(--olive-dark);
-      background-image:
-        linear-gradient(180deg, rgba(35, 39, 26, 0.5) 0%, rgba(35, 39, 26, 0.7) 100%),
-        url('assets/can-mora-de-dalt.jpg');
-      background-size: cover;
-      background-position: center;
       text-align: center;
-      padding: 5rem 1.5rem;
-      border-bottom: 4px solid var(--gold);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 55vh;
+      padding: 6rem 1.5rem 4rem;
     }
 
     .hero-photo-wrap {
-      position: relative;
       display: inline-block;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-photo-wrap::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: rgba(35, 39, 26, 0.35);
+      margin-bottom: 2rem;
     }
 
     .hero-photo {
-      width: 96px;
-      height: 96px;
+      width: 108px;
+      height: 108px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid var(--gold);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      border: 2px solid var(--ink);
       display: block;
     }
 
     .hero h1 {
       margin: 0;
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(2.75rem, 7vw, 5.5rem);
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      text-transform: none;
-      color: var(--cream);
+      font-family: "Caveat", cursive;
+      font-weight: 700;
+      font-size: clamp(3.25rem, 10vw, 5.5rem);
     }
 
-    .hero h1 .name {
-      font-weight: 500;
-    }
-
-    .hero h1 .and {
-      font-family: "Beau Rivage", cursive;
-      font-style: normal;
-      font-size: 0.65em;
-      color: var(--gold);
-      margin: 0 0.15em;
-      letter-spacing: 0;
-      vertical-align: -0.05em;
-    }
-
-    .hero p {
-      margin-top: 1.25rem;
-      font-size: 0.85rem;
-      letter-spacing: 0.25em;
+    .hero .tagline {
+      margin: 0.5rem 0 0;
+      font-size: 0.95rem;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--cream);
-      opacity: 0.85;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .motif-olive {
+      width: 220px;
+      height: auto;
+      margin: 2rem auto 0;
     }
 
     main {
-      max-width: 680px;
+      max-width: 640px;
       margin: 0 auto;
-      padding: 3.5rem 1.5rem 5rem;
+      padding: 1rem 1.5rem 6rem;
     }
 
     section {
-      margin-bottom: 4.5rem;
+      margin-bottom: 5.5rem;
     }
 
     section:last-child {
@@ -238,72 +262,52 @@
     }
 
     h2 {
-      color: var(--olive);
-      font-weight: 400;
-      font-size: 1.6rem;
+      font-size: 2.75rem;
+      font-weight: 700;
       text-align: center;
-      margin-bottom: 1.25rem;
-      position: relative;
+      margin: 0 0 2rem;
     }
 
-    h2::after {
-      content: "";
-      display: block;
-      width: 60px;
-      height: 2px;
-      background: var(--gold);
-      margin: 0.6rem auto 0;
-    }
-
-    .section-intro {
-      text-align: center;
-      max-width: 34rem;
-      margin: 0 auto 2rem;
-      color: var(--olive-dark);
-      opacity: 0.9;
+    .section-icon {
+      width: 72px;
+      height: auto;
+      margin: 0 auto 0.75rem;
     }
 
     .tbc {
-      color: #8a7245;
+      color: var(--muted);
       font-style: italic;
     }
 
     .card {
-      background: #fff;
-      border: 1px solid rgba(93, 103, 72, 0.15);
-      border-radius: 10px;
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
       padding: 2rem;
-      box-shadow: 0 4px 16px rgba(93, 103, 72, 0.08);
     }
 
     /* Home quick facts */
 
-    .details {
+    .facts {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0.6rem 1.75rem;
       text-align: center;
     }
 
-    .details dl {
-      display: grid;
-      grid-template-columns: auto auto;
-      gap: 0.5rem 1.5rem;
-      justify-content: center;
-      margin: 0;
+    .facts .fact-value {
+      font-size: 1.1rem;
+      font-weight: 500;
     }
 
-    .details dt {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.8rem;
-      text-align: right;
-      align-self: center;
-    }
-
-    .details dd {
-      margin: 0;
-      text-align: left;
-      align-self: center;
-      font-size: 1.05rem;
+    .facts .fact-label {
+      display: block;
+      color: var(--terracotta);
+      font-family: "Gloria Hallelujah", cursive;
+      font-size: 1rem;
+      font-weight: 400;
     }
 
     /* Schedule timeline */
@@ -316,10 +320,10 @@
 
     .timeline li {
       display: grid;
-      grid-template-columns: 6.5rem 1fr;
+      grid-template-columns: 6rem 1fr;
       gap: 0.25rem 1.25rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(93, 103, 72, 0.15);
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
     }
 
     .timeline li:last-child {
@@ -328,26 +332,35 @@
     }
 
     .timeline .time {
-      color: var(--gold);
-      font-weight: bold;
-      font-size: 0.95rem;
+      font-family: "Gloria Hallelujah", cursive;
+      color: var(--terracotta);
+      font-weight: 400;
+      font-size: 1.15rem;
       align-self: start;
     }
 
     .timeline .event {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      font-weight: 500;
       color: var(--ink);
     }
 
     .timeline .note {
       display: block;
       font-size: 0.9rem;
-      color: var(--olive-dark);
-      opacity: 0.85;
+      font-weight: 400;
+      color: var(--muted);
       margin-top: 0.15rem;
     }
 
     /* Travel */
+
+    .venue-photo {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+      margin-bottom: 2rem;
+    }
 
     .info-block {
       margin-bottom: 1.75rem;
@@ -359,9 +372,9 @@
 
     .info-block h3 {
       margin: 0 0 0.4rem;
-      color: var(--olive-dark);
+      color: var(--ink);
       font-size: 1.05rem;
-      letter-spacing: 0.03em;
+      font-weight: 700;
     }
 
     .info-block p {
@@ -371,40 +384,43 @@
     .transport-prompt {
       margin-top: 2rem;
       text-align: center;
-      background: rgba(179, 153, 105, 0.12);
-      border: 1px solid rgba(179, 153, 105, 0.4);
-      border-radius: 10px;
-      padding: 1.5rem;
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+
+    .transport-prompt .section-icon {
+      width: 150px;
     }
 
     .transport-prompt p {
-      margin: 0 0 0.9rem;
+      margin: 0 0 1.1rem;
     }
 
     .link-btn {
       display: inline-block;
-      background: var(--olive);
+      background: var(--green);
       color: var(--cream);
       text-decoration: none;
-      padding: 0.6rem 1.4rem;
-      border-radius: 6px;
+      padding: 0.65rem 1.6rem;
+      border-radius: 999px;
       font-size: 0.95rem;
-      letter-spacing: 0.03em;
+      font-weight: 500;
       transition: background 0.2s ease;
     }
 
     .link-btn:hover {
-      background: var(--olive-dark);
+      background: var(--green-dark);
     }
 
     /* RSVP form */
 
     form {
-      background: #fff;
-      border: 1px solid rgba(93, 103, 72, 0.15);
-      border-radius: 10px;
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
       padding: 2rem;
-      box-shadow: 0 4px 16px rgba(93, 103, 72, 0.08);
     }
 
     .field {
@@ -414,9 +430,9 @@
     label {
       display: block;
       font-size: 0.95rem;
-      color: var(--olive-dark);
+      color: var(--ink);
       margin-bottom: 0.4rem;
-      font-weight: bold;
+      font-weight: 700;
     }
 
     .radio-group {
@@ -428,7 +444,7 @@
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      font-weight: normal;
+      font-weight: 400;
       margin-bottom: 0;
       cursor: pointer;
     }
@@ -438,10 +454,10 @@
     select,
     textarea {
       width: 100%;
-      padding: 0.7rem 0.8rem;
-      border: 1px solid rgba(93, 103, 72, 0.3);
-      border-radius: 6px;
-      background: var(--cream);
+      padding: 0.7rem 0.9rem;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
       color: var(--ink);
       font-family: inherit;
       font-size: 1rem;
@@ -452,7 +468,7 @@
     select:focus,
     textarea:focus {
       outline: none;
-      border-color: var(--gold);
+      border-color: var(--green);
     }
 
     textarea {
@@ -461,30 +477,30 @@
     }
 
     input[type="radio"] {
-      accent-color: var(--olive);
+      accent-color: var(--green);
     }
 
     .submit-btn {
       display: block;
       width: 100%;
       padding: 0.9rem;
-      background: var(--olive);
+      background: var(--green);
       color: var(--cream);
       border: none;
-      border-radius: 6px;
+      border-radius: 999px;
       font-family: inherit;
       font-size: 1.05rem;
-      letter-spacing: 0.03em;
+      font-weight: 700;
       cursor: pointer;
       transition: background 0.2s ease;
     }
 
     .submit-btn:hover {
-      background: var(--olive-dark);
+      background: var(--green-dark);
     }
 
     .submit-btn:disabled {
-      background: #9aa08a;
+      background: #b3b3a4;
       cursor: not-allowed;
     }
 
@@ -492,7 +508,7 @@
       display: none;
       margin-top: 1.25rem;
       padding: 1rem 1.2rem;
-      border-radius: 6px;
+      border-radius: 12px;
       font-size: 0.98rem;
       text-align: center;
     }
@@ -502,21 +518,21 @@
     }
 
     .form-message.success {
-      background: rgba(93, 103, 72, 0.12);
-      border: 1px solid var(--olive);
-      color: var(--olive-dark);
+      background: rgba(0, 0, 0, 0.05);
+      border: 1.5px solid var(--green);
+      color: var(--green-dark);
     }
 
     .form-message.error {
-      background: rgba(179, 153, 105, 0.15);
-      border: 1px solid var(--gold);
-      color: #7a6535;
+      background: rgba(31, 31, 28, 0.05);
+      border: 1.5px solid var(--border);
+      color: var(--ink);
     }
 
     /* FAQ accordion */
 
     .faq-item {
-      border-bottom: 1px solid rgba(93, 103, 72, 0.15);
+      border-bottom: 1px solid var(--border);
     }
 
     .faq-item:last-child {
@@ -526,8 +542,8 @@
     .faq-item summary {
       cursor: pointer;
       padding: 1.1rem 0.25rem;
-      font-weight: bold;
-      color: var(--olive-dark);
+      font-weight: 700;
+      color: var(--ink);
       list-style: none;
       display: flex;
       justify-content: space-between;
@@ -541,8 +557,8 @@
 
     .faq-item summary::after {
       content: "+";
-      color: var(--gold);
-      font-size: 1.3rem;
+      color: var(--terracotta);
+      font-size: 1.4rem;
       flex-shrink: 0;
       transition: transform 0.2s ease;
     }
@@ -555,22 +571,17 @@
       margin: 0 0.25rem 1.1rem;
     }
 
-    /* Our Story */
-
-    .story-photo {
-      width: 100%;
-      border-radius: 10px;
-      display: block;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 16px rgba(93, 103, 72, 0.15);
-    }
-
     footer {
       text-align: center;
-      padding: 2rem 1.5rem;
-      color: var(--olive);
+      padding: 2rem 1.5rem 3rem;
+      color: var(--muted);
       font-size: 0.9rem;
-      opacity: 0.8;
+    }
+
+    footer .motif {
+      width: 110px;
+      margin: 0 auto 0.75rem;
+      color: var(--muted);
     }
   </style>
 </head>
@@ -578,71 +589,76 @@
 
   <nav class="site-nav">
     <div class="nav-bar">
+      <div class="lang-toggle">
+        <button type="button" id="lang-en" class="active">EN</button>
+        <button type="button" id="lang-ca">CA</button>
+      </div>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span><span></span>
       </button>
       <div class="nav-inner" id="nav-links">
-        <a href="#home">Home</a>
-        <a href="#rsvp">RSVP</a>
-        <a href="#schedule">Schedule</a>
-        <a href="#travel">Travel</a>
-        <a href="#faq">FAQs</a>
-        <a href="#story">Our Story</a>
+        <a href="#home" data-en="Home" data-ca="Inici">Home</a>
+        <a href="#rsvp" data-en="RSVP" data-ca="RSVP">RSVP</a>
+        <a href="#schedule" data-en="Schedule" data-ca="Horari">Schedule</a>
+        <a href="#travel" data-en="Travel" data-ca="Viatge">Travel</a>
+        <a href="#faq" data-en="FAQs" data-ca="Preguntes">FAQs</a>
       </div>
     </div>
   </nav>
 
   <div class="hero" id="home">
-    <div>
-      <div class="hero-photo-wrap">
-        <img class="hero-photo" src="assets/Us_1.jpg" alt="Aoife and Mar" />
-      </div>
-      <h1><span class="name">Aoife</span> <span class="and">&amp;</span> <span class="name">Mar</span></h1>
-      <p>are getting married</p>
+    <div class="hero-photo-wrap">
+      <img class="hero-photo" src="assets/Us_1.jpg" alt="Aoife and Mar" />
     </div>
+    <h1>Aoife &amp; Mar</h1>
+    <p class="tagline" data-en="are getting married" data-ca="es casen">are getting married</p>
+
+    <img class="motif motif-olive" src="assets/GuinessHands.png" alt="Cheers" />
   </div>
 
   <main>
 
     <section id="home-details">
-      <div class="details">
-        <dl>
-          <dt>Date</dt>
-          <dd>9th October 2027</dd>
-
-          <dt>Time</dt>
-          <dd>4:00 PM</dd>
-
-          <dt>Venue</dt>
-          <dd>Can Mora de Dalt</dd>
-        </dl>
+      <div class="facts">
+        <div class="fact">
+          <span class="fact-label" data-en="Date" data-ca="Data">Date</span>
+          <span class="fact-value" data-en="9th October 2027" data-ca="9 d'octubre de 2027">9th October 2027</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label" data-en="Time" data-ca="Hora">Time</span>
+          <span class="fact-value" data-en="4:00 PM" data-ca="16:00">4:00 PM</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label" data-en="Venue" data-ca="Lloc">Venue</span>
+          <span class="fact-value">Can Mora de Dalt</span>
+        </div>
       </div>
     </section>
 
     <section id="rsvp">
-      <h2>RSVP</h2>
+      <h2 data-en="RSVP" data-ca="Confirma la teva assistència">RSVP</h2>
       <form id="rsvp-form" action="[YOUR_FORM_ENDPOINT]" method="POST">
 
         <div class="field">
-          <label for="name">Name</label>
+          <label for="name" data-en="Name" data-ca="Nom">Name</label>
           <input type="text" id="name" name="name" required />
         </div>
 
         <div class="field">
-          <label for="email">Email</label>
+          <label for="email" data-en="Email" data-ca="Correu electrònic">Email</label>
           <input type="email" id="email" name="email" required />
         </div>
 
         <div class="field">
-          <label>Will you be attending?</label>
+          <label data-en="Will you be attending?" data-ca="Hi assistiràs?">Will you be attending?</label>
           <div class="radio-group">
-            <label><input type="radio" name="attending" value="yes" required /> Yes</label>
-            <label><input type="radio" name="attending" value="no" required /> No</label>
+            <label><input type="radio" name="attending" value="yes" required /> <span data-en="Yes" data-ca="Sí">Yes</span></label>
+            <label><input type="radio" name="attending" value="no" required /> <span data-en="No" data-ca="No">No</span></label>
           </div>
         </div>
 
         <div class="field">
-          <label for="guests">Number of guests</label>
+          <label for="guests" data-en="Number of guests" data-ca="Nombre d'acompanyants">Number of guests</label>
           <select id="guests" name="guests">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -652,24 +668,24 @@
         </div>
 
         <div class="field">
-          <label>Transport</label>
+          <label data-en="Transport" data-ca="Transport">Transport</label>
           <div class="radio-group">
-            <label><input type="radio" name="transport" value="own" /> Own transport</label>
-            <label><input type="radio" name="transport" value="bus" /> Shuttle bus</label>
+            <label><input type="radio" name="transport" value="own" /> <span data-en="Own transport" data-ca="Vehicle propi">Own transport</span></label>
+            <label><input type="radio" name="transport" value="bus" /> <span data-en="Shuttle bus" data-ca="Autobús llançadora">Shuttle bus</span></label>
           </div>
         </div>
 
         <div class="field">
-          <label for="diet">Dietary requirements</label>
-          <textarea id="diet" name="diet" placeholder="Let us know about any allergies or preferences"></textarea>
+          <label for="diet" data-en="Dietary requirements" data-ca="Restriccions alimentàries">Dietary requirements</label>
+          <textarea id="diet" name="diet" placeholder="Let us know about any allergies or preferences" data-en-placeholder="Let us know about any allergies or preferences" data-ca-placeholder="Digues-nos si tens al·lèrgies o preferències"></textarea>
         </div>
 
-        <button type="submit" class="submit-btn" id="submit-btn">Send RSVP</button>
+        <button type="submit" class="submit-btn" id="submit-btn" data-en="Send RSVP" data-ca="Envia la confirmació">Send RSVP</button>
 
-        <div class="form-message success" id="success-message">
+        <div class="form-message success" id="success-message" data-en="Thank you! Your RSVP has been received — we can't wait to celebrate with you." data-ca="Gràcies! Hem rebut la teva confirmació — tenim moltes ganes de celebrar-ho amb tu.">
           Thank you! Your RSVP has been received — we can't wait to celebrate with you.
         </div>
-        <div class="form-message error" id="error-message">
+        <div class="form-message error" id="error-message" data-en="Something went wrong sending your RSVP. Please try again, or email us directly." data-ca="Hi ha hagut un problema en enviar la confirmació. Torna-ho a provar o escriu-nos directament.">
           Something went wrong sending your RSVP. Please try again, or email us directly.
         </div>
 
@@ -677,37 +693,37 @@
     </section>
 
     <section id="schedule">
-      <h2>Schedule of the Day</h2>
+      <h2 data-en="Schedule of the Day" data-ca="Horari del Dia">Schedule of the Day</h2>
       <div class="card">
         <ul class="timeline">
           <li>
             <span class="time">4:00 PM</span>
-            <span class="event">Ceremony
+            <span class="event"><span data-en="Ceremony" data-ca="Cerimònia">Ceremony</span>
               <span class="note">Can Mora de Dalt</span>
             </span>
           </li>
           <li>
-            <span class="time tbc">TBC</span>
-            <span class="event">Cocktail Hour
-              <span class="note tbc">Timing to be confirmed</span>
+            <span class="time tbc" data-en="TBC" data-ca="Per confirmar">TBC</span>
+            <span class="event"><span data-en="Cocktail Hour" data-ca="Còctel">Cocktail Hour</span>
+              <span class="note tbc" data-en="Timing to be confirmed" data-ca="Horari per confirmar">Timing to be confirmed</span>
             </span>
           </li>
           <li>
-            <span class="time tbc">TBC</span>
-            <span class="event">Reception &amp; Dinner
-              <span class="note tbc">Timing to be confirmed</span>
+            <span class="time tbc" data-en="TBC" data-ca="Per confirmar">TBC</span>
+            <span class="event"><span data-en="Reception &amp; Dinner" data-ca="Recepció i Sopar">Reception &amp; Dinner</span>
+              <span class="note tbc" data-en="Timing to be confirmed" data-ca="Horari per confirmar">Timing to be confirmed</span>
             </span>
           </li>
           <li>
-            <span class="time tbc">TBC</span>
-            <span class="event">After-Party
-              <span class="note tbc">Timing to be confirmed</span>
+            <span class="time tbc" data-en="TBC" data-ca="Per confirmar">TBC</span>
+            <span class="event"><span data-en="After-Party" data-ca="Festa Posterior">After-Party</span>
+              <span class="note tbc" data-en="Timing to be confirmed" data-ca="Horari per confirmar">Timing to be confirmed</span>
             </span>
           </li>
           <li>
-            <span class="time tbc">TBC</span>
-            <span class="event">Next-Day Brunch
-              <span class="note tbc">Details to follow, if you're staying on</span>
+            <span class="time tbc" data-en="TBC" data-ca="Per confirmar">TBC</span>
+            <span class="event"><span data-en="Next-Day Brunch" data-ca="Brunch de l'Endemà">Next-Day Brunch</span>
+              <span class="note tbc" data-en="Details to follow, if you're staying on" data-ca="Més detalls properament, si et quedes">Details to follow, if you're staying on</span>
             </span>
           </li>
         </ul>
@@ -715,61 +731,59 @@
     </section>
 
     <section id="travel">
-      <h2>Travel &amp; Accommodations</h2>
+      <h2 data-en="Travel &amp; Accommodations" data-ca="Viatge i Allotjament">Travel &amp; Accommodations</h2>
+      <img class="venue-photo" src="assets/can-mora-de-dalt.jpg" alt="Can Mora de Dalt" />
       <div class="card">
         <div class="info-block">
-          <h3>Venue Address</h3>
+          <h3 data-en="Venue Address" data-ca="Adreça del Lloc">Venue Address</h3>
           <p>Can Mora de Dalt<br>Raval de Font Mitjana, 3, 08394 Sant Vicenç de Montalt, Barcelona, Spain</p>
         </div>
         <div class="info-block">
-          <h3>Parking</h3>
-          <p class="tbc">Parking details to be confirmed — we'll update this closer to the day.</p>
+          <h3 data-en="Parking" data-ca="Aparcament">Parking</h3>
+          <p class="tbc" data-en="Parking details to be confirmed — we'll update this closer to the day." data-ca="Detalls de l'aparcament per confirmar — ho actualitzarem més a prop de la data.">Parking details to be confirmed — we'll update this closer to the day.</p>
         </div>
         <div class="info-block">
-          <h3>Nearest Airport</h3>
-          <p>Barcelona–El Prat Airport (BCN) is the main international airport serving the area.
-            <span class="tbc">Exact travel time from the venue to be confirmed.</span></p>
+          <h3 data-en="Nearest Airport" data-ca="Aeroport Més Proper">Nearest Airport</h3>
+          <p><span data-en="Barcelona–El Prat Airport (BCN) is the main international airport serving the area." data-ca="L'aeroport de Barcelona–El Prat (BCN) és el principal aeroport internacional de la zona.">Barcelona–El Prat Airport (BCN) is the main international airport serving the area.</span>
+            <span class="tbc" data-en="Exact travel time from the venue to be confirmed." data-ca="El temps exacte de trajecte des del lloc encara està per confirmar.">Exact travel time from the venue to be confirmed.</span></p>
         </div>
         <div class="info-block">
-          <h3>Accommodation</h3>
-          <p class="tbc">We're arranging a hotel block nearby — booking link and details coming soon.</p>
+          <h3 data-en="Accommodation" data-ca="Allotjament">Accommodation</h3>
+          <p class="tbc" data-en="We're arranging a hotel block nearby — booking link and details coming soon." data-ca="Estem organitzant una reserva d'hotels propers — l'enllaç de reserva i els detalls arribaran aviat.">We're arranging a hotel block nearby — booking link and details coming soon.</p>
         </div>
       </div>
 
       <div class="transport-prompt">
-        <p>Will you be making your own way, or would you like a seat on the shuttle bus?</p>
-        <a href="#rsvp" class="link-btn">Let us know in your RSVP</a>
+        <img class="section-icon" src="assets/GuinessHands.png" alt="Cheers" />
+        <p data-en="Will you be making your own way, or would you like a seat on the shuttle bus?" data-ca="Vindràs pel teu compte o t'agradaria una plaça a l'autobús llançadora?">Will you be making your own way, or would you like a seat on the shuttle bus?</p>
+        <a href="#rsvp" class="link-btn" data-en="Let us know in your RSVP" data-ca="Digues-nos-ho a la confirmació">Let us know in your RSVP</a>
       </div>
     </section>
 
     <section id="faq">
-      <h2>FAQs</h2>
+      <h2 data-en="FAQs" data-ca="Preguntes Freqüents">FAQs</h2>
       <div class="card">
         <details class="faq-item">
-          <summary>What's the dress code?</summary>
-          <p class="tbc">Dress code details coming soon.</p>
+          <summary data-en="What's the dress code?" data-ca="Quin és el codi de vestimenta?">What's the dress code?</summary>
+          <p class="tbc" data-en="Dress code details coming soon." data-ca="Aviat detallarem el codi de vestimenta.">Dress code details coming soon.</p>
         </details>
         <details class="faq-item">
-          <summary>Are children welcome?</summary>
-          <p class="tbc">Our children's policy will be confirmed here shortly.</p>
+          <summary data-en="Are children welcome?" data-ca="Es poden portar nens?">Are children welcome?</summary>
+          <p class="tbc" data-en="Our children's policy will be confirmed here shortly." data-ca="Aviat confirmarem la nostra política per a nens.">Our children's policy will be confirmed here shortly.</p>
         </details>
         <details class="faq-item">
-          <summary>Will there be a shuttle?</summary>
-          <p>Yes — let us know if you'd like a seat when you RSVP. Shuttle pickup times will be added to the
-            <a href="#schedule">Schedule</a> once confirmed.</p>
+          <summary data-en="Will there be a shuttle?" data-ca="Hi haurà autobús llançadora?">Will there be a shuttle?</summary>
+          <p><span data-en="Yes — let us know if you'd like a seat when you RSVP. Shuttle pickup times will be added to the" data-ca="Sí — digues-nos-ho si vols una plaça quan confirmis l'assistència. Els horaris de recollida s'afegiran a l'">Yes — let us know if you'd like a seat when you RSVP. Shuttle pickup times will be added to the</span>
+            <a href="#schedule" data-en="Schedule" data-ca="Horari">Schedule</a>
+            <span data-en="once confirmed." data-ca="un cop confirmats.">once confirmed.</span></p>
         </details>
       </div>
-    </section>
-
-    <section id="story">
-      <h2>Our Story</h2>
-      <img class="story-photo" src="assets/Us_2.JPG" alt="Aoife and Mar" />
-      <p>It started with swiping right...</p>
     </section>
 
   </main>
 
   <footer>
+    <img class="motif" src="assets/GuinessHands.png" alt="Cheers" />
     Aoife &amp; Mar · Can Mora de Dalt
   </footer>
 
@@ -788,6 +802,46 @@
         navToggle.setAttribute("aria-expanded", "false");
       });
     });
+
+    // Bilingual EN / CA toggle
+
+    const langEnBtn = document.getElementById("lang-en");
+    const langCaBtn = document.getElementById("lang-ca");
+    const titles = {
+      en: "Aoife & Mar — 9th October 2027",
+      ca: "Aoife i Mar — 9 d'octubre de 2027",
+    };
+
+    function applyLang(lang) {
+      document.querySelectorAll("[data-en]").forEach(function (el) {
+        const value = lang === "ca" ? el.getAttribute("data-ca") : el.getAttribute("data-en");
+        if (value !== null) el.textContent = value;
+      });
+
+      document.querySelectorAll("[data-en-placeholder]").forEach(function (el) {
+        const value = lang === "ca" ? el.getAttribute("data-ca-placeholder") : el.getAttribute("data-en-placeholder");
+        if (value !== null) el.setAttribute("placeholder", value);
+      });
+
+      document.documentElement.lang = lang;
+      document.title = titles[lang];
+      langEnBtn.classList.toggle("active", lang === "en");
+      langCaBtn.classList.toggle("active", lang === "ca");
+      localStorage.setItem("wedding-lang", lang);
+    }
+
+    langEnBtn.addEventListener("click", function () {
+      applyLang("en");
+    });
+
+    langCaBtn.addEventListener("click", function () {
+      applyLang("ca");
+    });
+
+    const savedLang = localStorage.getItem("wedding-lang");
+    if (savedLang === "ca") {
+      applyLang("ca");
+    }
 
     // Paste your Apps Script Web App deployment URL here (see setup instructions).
     const APPS_SCRIPT_URL = "[YOUR_APPS_SCRIPT_WEB_APP_URL]";
@@ -814,7 +868,9 @@
       };
 
       submitBtn.disabled = true;
-      submitBtn.textContent = "Sending…";
+      const sendingText = document.documentElement.lang === "ca" ? "Enviant…" : "Sending…";
+      const sendText = submitBtn.getAttribute(document.documentElement.lang === "ca" ? "data-ca" : "data-en");
+      submitBtn.textContent = sendingText;
 
       try {
         const response = await fetch(APPS_SCRIPT_URL, {
@@ -838,7 +894,7 @@
         errorMessage.classList.add("visible");
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = "Send RSVP";
+        submitBtn.textContent = sendText;
       }
     });
   </script>
